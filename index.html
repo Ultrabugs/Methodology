@@ -28,12 +28,12 @@
 
         <div class="sidebar">
             <ul>
-                <!-- <li><a href="#">Resources</a></li>
-                <li><a href="#">Burp Suite</a></li>
+                <li><a href="#setup">setup</a></li>
+                <li><a href="#extensions">extensions</a></li>
+                <li><a href="#urls">collect urls</a></li>
+                <li><a href="#auth">Crawling</a></li>
                 <li><a href="#">Article</a></li>
                 <li><a href="#">Article</a></li>
-                <li><a href="#">Article</a></li>
-                <li><a href="#">Article</a></li> -->
             </ul>
         </div>
         <div class="main">
@@ -64,7 +64,7 @@
                         instead of leaning on AI, which is what being a developer is really about. link: <a class="resource--links" href="https://www.theodinproject.com/">Odin Project</a>
                     </p>
 
-                    <h2 class="font--fantasy">
+                    <h2 class="font--fantasy" id="setup">
                     Setting up burp suite for bugbounty
                     </h2>
                     <p class="blog--article-text">
@@ -75,7 +75,7 @@
                     </div>
                     
                      
-                    <h2 class="font--fantasy">
+                    <h2 class="font--fantasy" id="extensions">
                         Extensions
                     </h2>
                     <p class="blog--article-text">
@@ -86,7 +86,7 @@
                         Other extensions to install: GAP, param miner 
                     </p>
 
-                    <h2 class="font--fantasy">
+                    <h2 class="font--fantasy" id="urls">
                         Collecting URLs
                     </h2>
                     <p class="blog--article-text">
@@ -106,7 +106,7 @@
                         becareful when using katana with headers like gzip it can prevent it from crawling so make sure you remove those headers. 
                     </p>
                     
-                    <h3 class="font--fantasy">
+                    <h3 class="font--fantasy" id="auth">
                         Commands i use 
                     </h3>
                     
@@ -182,6 +182,15 @@
                         <img class="blog--image-block" src="assets/crawl.png" alt="">
                     </div>
 
+                    <h3 class="font--fantasy">
+                        Why
+                    </h3>
+
+                    <p class="blog--article-text">
+                        You might be wondering why? well, being authenticated lets us access areas of a website, Including javascript files. That we are not able to normally access, had we not been logged in. so being authenticated lets us crawl the website and harvest, more URLs and more javascript files.
+                    </p>
+
+                    
 
                 </div>
         </div>
