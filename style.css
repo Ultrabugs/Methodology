@@ -57,7 +57,7 @@ body{
 }
 
 .nav--header{
-    width: 50%;
+    flex: 1;
 }
 .nav--end{
     width: 50%;
