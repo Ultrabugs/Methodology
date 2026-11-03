@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+     
+}
+
+html,
+body{
+    height: 100vh;
+
+}
+
+:root {
+    --font-heading: 'Fraunces', Georgia, serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+.color--orange{
+    color: darkorange;
+}
+
+.font--fantasy {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+.font--24{
+    font-size: 24px;
+}
+
+.font--small{
+    font-size: 20px;
+}
+
+.container {
+    display: grid; 
+    height: 100%;
+    grid-template-columns: 150px 6fr 1fr;
+    grid-template-rows: 80px 1fr 40px;
+}
+
+.nav {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 50px;
+    font-size: 22px;
+    border-bottom: 1px solid black;
+    background-color: #A19D84;
+    color: #3d3b0b;
+
+
+}
+
+.nav--header{
+    width: 50%;
+}
+.nav--end{
+    width: 50%;
+    padding-right: 25px;
+}
+
+.gh-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    justify-self: flex-end;
+    
+
+   
+}
+
+.gh-link:hover {
+    background: rgba(255, 255, 255, 0.527);
+    color: #24292f;               
+    box-shadow: 0 1px 4px #3d3b0b;
+}
+
+
+.sidebar {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+     
+
+}
+
+
+.main {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    background-color: #F6F3EA;
+    overflow-y: auto;
+}
+
+.main--title{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 600px;
+    background-color: #F6F3EA;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.main--title h1 {
+    margin-bottom: 12px;
+    font-size: 54px;
+    line-height: 1.1;
+}
+
+.blog--one{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.blog--article-text{
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+
+ 
+.blog--one h2 {
+    font-size: 30px; 
+    color: #3d3b0b;
+    margin-bottom: 15px;
+}
+
+.blog--one h3 {
+    font-size: 22px;
+    margin: 32px 0 8px;
+    padding-left: 12px;
+    border-left: 3px solid darkorange;
+    color: #3d3b0b;
+}
+
+.exstentions {
+    width: 400px; 
+    padding-left: 50px;
+    padding: 20px;
+    font-size: 17px;
+    
+}
+
+
+.footer {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+    background-color: #A19D84;
+    color: #3d3b0b;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 25px;
+}
+
+.font-footer {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+}
+
+/** IMG STUFF HERE FOR ARTICLE **/
+
+.blog--img img {
+    display: block;
+    max-width: 100%;            
+    height: auto;
+    border-radius: 12px;
+    
+}
+
+.blog--img {
+    width: 600px;
+}
+
+.blog--img img:hover {
+    border: 2px solid darkorange;
+    cursor: hand;
+}
+
+.blog--image-block:hover {
+    cursor: hand;
+}
+
+
+.blog--image-block.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 0;
+    z-index: 1000;
+    cursor: zoom-out;
+}
+
+.code-block {
+    background-color: #24292f;
+    color: #e6edf3;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+     
+}
+
+code {
+    width: 500px;
+}
+
+code, pre {
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+}
+
+ 
+
+.copy-btn:hover {
+    border-color: darkorange;
+}
+
+
+/** GENERIC STUFF HERE**/
+
+.resource--links{
+    color: red;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.margin-top-10 {
+    margin-top: 20px;
+}
