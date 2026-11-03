@@ -193,6 +193,17 @@ body{
     padding-right: 25px;
 }
 
+ 
+
+.sidebar-btn{
+    flex: 1;
+    padding-left: 20px;
+    justify-self: flex-start;     
+    background-color:#A19D84;
+    font-weight: bold;
+    
+}
+
 .font-footer {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
