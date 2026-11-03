@@ -60,7 +60,8 @@ body{
     flex: 1;
 }
 .nav--end{
-    width: 50%;
+    display: flex;
+    justify-content: flex-end;
     padding-right: 25px;
 }
 
