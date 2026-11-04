@@ -191,6 +191,91 @@
                         You might be wondering why? well, being authenticated lets us access areas of a website, Including javascript files. That we are not able to normally access, had we not been logged in. so being authenticated lets us crawl the website and harvest, more URLs and more javascript files.
                     </p>
 
+                    <h2 class="font--fantasy" id="urls">
+                        Input validation 
+                    </h2>
+
+                    <p class="blog--article-text">
+                        Now that we have a lot of URLs what to do now? well we can test each URL for input validation. Bug types like XSS, SSRF, SSTI, CSTI, SQLi etc can be automated. It's important to note that automation doesn't find all injection bugs, there are many edge cases where the type of payload you input won't work. having an understanding of waf will also help you for example if you sprayed the basic alert(1) tag into each field. you will likely get hit by their waf and your entire run gets killed. Or you might use excessive rate limits and your run is killed again. 
+                    </p>
+
+                    <p class="blog--article-text">
+                        When testing for input validation bugs its very important to understand what it is your doing. Simply spraying payloads won't work as well as you expect. you likely have tried this and hit a dead end and not found much. I'm here to show you how you can find stuff and relatively simply. For the sake of my findings we will focus on using a simple nuclei template reflected xss template. this template is nice because it uses a simple payload that is random and doesn't hit waf even on hardened targets. 
+                    </p>
+
+                    <div class="code-block">
+                        '><12394>xss123 
+                    </div>
+
+                    <p class="blog--article-text">
+                        The above is what the payload is using pretty much, but it auto updates the number inside of the < > so it acts as canary across each URL which is nice. You might be thinking or have read guides on the internet where they tell you okay we need to use gf xss and or sort by parameters right? well again, this is wrong because XSS in most of my findings have been from the path themselves and guess what? nuclei's reflected xss also targets the path.  
+                    </p>
+
+                    <h3 class="font--fantasy">
+                        Input validation flow
+                    </h3>
+
+                    <p class="blog--article-text">
+                        Once we have our huge list of URLs using the katana commands above should minimize duplicated paths from SPAs and dynamic loaded content, its not perfect. 
+                        But you will likely have millions of URLs at this point if you mass scanned large target. You cannot just load 10B URLs into nuclei it won't load and it will crash. 
+
+                        You need to split the URLs into chunks, so it loads in around 2-5K urls at a time i use this script for it.
+                    </p>
+
+                    <p class="blog--article-text">
+                        I recommend saving this in /usr/local/bin/chunk_splitter and chmod +x it. 
+                        This should then be globally accessible to you where ever you are in your terminal.
+                    </p>
+
+                    <div class="code-block">
+                        #!/bin/bash
+                        set -e
+
+                        if [ $# -lt 2 ]; then
+                        echo "Usage: $0 urls.txt foldername"
+                        exit 1
+                        fi
+
+                        INPUT="$1"
+                        FOLDER="$2"
+
+                        mkdir -p "$FOLDER"
+                        split -l 5000 "$INPUT" "$FOLDER/chunk_" --additional-suffix=.txt
+                        wc -l "$INPUT"
+                        cat "$FOLDER"/chunk_*.txt | wc -l
+
+                    </div>
+
+                    <p class="blog--article-text">
+                        Next we need to itterate over each chunk one by one and test them. it's important to remember what i said, we must go slow, going fast and getting hit by waf is the last thing you want to happen during input testing, slow steady and correct injection is the way forward.
+                    </p>
+
+                    <h3 class="font--fantasy">
+                        Finding a bug 
+                    </h3>
+
+                    <p class="blog--article-text">
+                        Now its time to run the following command, make sure you split your files and go to that directory, then run the following command make sure you have nuclei installed and its templates. This might take a long time, so if you have a VPS this will be better, and use screen or something. 
+                    </p>
+
+                    <div class="code-block">
+                        for f in chunk_*.txt; do
+                            echo "[*] Scanning $f"
+                            nuclei -l "$f" \
+                                -t /home/user/nuclei-templates/dast/vulnerabilities/xss/reflected-xss.yaml \
+                                -rl 5 -c 5 \
+                                -o "results_${f%.txt}.txt" -dast
+                        done
+                    </div>
+                    
+
+                    <p class="blog--article-text">
+                        After leaving this run for a couple hours i got a hit. And was able to confirm RXSS on the path. If you would have sorted URLs for only parameters you would have missed this.
+                    </p>
+
+                    <div class="blog--img margin-bottom-20">
+                        <img class="blog--image-block" src="assets/bug.png" alt="">
+                    </div>
                     
 
                 </div>
