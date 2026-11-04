@@ -53,12 +53,12 @@ body{
     background-color: #A19D84;
     color: #3d3b0b;
 
-
 }
 
 .nav--header{
     flex: 1;
 }
+
 .nav--end{
     display: flex;
     justify-content: flex-end;
@@ -77,8 +77,6 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.6);
     cursor: pointer;
     justify-self: flex-end;
-    
-
    
 }
 
